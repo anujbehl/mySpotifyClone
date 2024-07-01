@@ -1,5 +1,6 @@
 
 console.log('Lets write JavaScript');
+console.log('lets use')
 let currFolder;
 let songs;
 let currentSong = new Audio();
