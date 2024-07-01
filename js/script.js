@@ -30,6 +30,7 @@ async function getSongs(folder){
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
+    console.log(response)
     let folderSongs = div.getElementsByTagName("script")
     songs = []
     for (let index = 0; index < folderSongs.length; index++){
@@ -41,14 +42,14 @@ async function getSongs(folder){
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     songUL.innerHTML = ""
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="./img/music.svg" alt="">
+        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="img/music.svg" alt="">
                             <div class="info">
                                 <div> ${song}</div>
                                 <div>Anuj</div>
                             </div>
                             <div class="playnow">
                                 <span>Play Now</span>
-                                <img class="invert" src="./img/play.svg" alt="">
+                                <img class="invert" src="img/play.svg" alt="">
                             </div> </li>`;
     }
 
@@ -89,7 +90,7 @@ async function displayAlbums() {
 
     for (let index = 0; index < finalSongs.length; index++) {
         let folder = finalSongs[index].innerHTML.split("\"")[1];
-        let a = await fetch(`../songs/${folder}/info.json`)
+        let a = await fetch(`songs/${folder}/info.json`)
         let response = await a.json();
         cardContainer.innerHTML = cardContainer.innerHTML + ` <div class="card">
             <div class="play">
@@ -100,7 +101,7 @@ async function displayAlbums() {
                 </svg>
             </div>
 
-            <img src="../songs/${folder}/cover.jpg" alt="">
+            <img src="songs/${folder}/cover.jpg" alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
         </div>`
@@ -127,11 +128,11 @@ async function main(){
        play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play()
-            play.src = "../img/pause.svg"
+            play.src = "img/pause.svg"
         }
         else {
             currentSong.pause()
-            play.src = "../img/play.svg"
+            play.src = "img/play.svg"
         }
       })
 
