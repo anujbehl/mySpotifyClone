@@ -1,6 +1,6 @@
 
 console.log('Lets write JavaScript');
-console.log('lets use')
+console.log('lets uses')
 let currFolder;
 let songs;
 let currentSong = new Audio();
@@ -24,6 +24,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getSongs(folder){
     currFolder = folder;
+    console.log(currFolder)
 
     let a = await fetch(`${folder}/`)
     let response = await a.text();
@@ -74,7 +75,7 @@ const playMusic = (track, pause = false) => {
 
 async function displayAlbums() {
     console.log("displaying albums")
-    let a = await fetch('../songs/')
+    let a = await fetch('./songs/')
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -118,7 +119,7 @@ Array.from(document.getElementsByClassName("card")).forEach(e => {
 
 }
 async function main(){
-      await getSongs("../songs/ncs")
+      await getSongs("./songs/ncs")
       playMusic(songs[0], true)
 
       await displayAlbums()
