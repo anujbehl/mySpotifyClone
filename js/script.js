@@ -64,7 +64,7 @@ const playMusic = (track, pause = false) => {
     currentSong.src = `${currFolder}/` + track + '.mp3'
     if (!pause) {
         currentSong.play()
-        play.src = "././img/pause.svg"
+        play.src = "img/pause.svg"
     }
 
 
@@ -73,7 +73,7 @@ const playMusic = (track, pause = false) => {
 
 async function displayAlbums() {
     console.log("displaying albums")
-    let a = await fetch('././songs/')
+    let a = await fetch('./songs/')
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -87,7 +87,7 @@ async function displayAlbums() {
 
     for (let index = 0; index < finalSongs.length; index++) {
         let folder = finalSongs[index].innerHTML.split("\"")[1];
-        let a = await fetch(`././songs/${folder}/info.json`)
+        let a = await fetch(`./songs/${folder}/info.json`)
         let response = await a.json();
         cardContainer.innerHTML = cardContainer.innerHTML + ` <div class="card">
             <div class="play">
@@ -108,7 +108,7 @@ async function displayAlbums() {
 // Load the playlist whenever card is clicked
 Array.from(document.getElementsByClassName("card")).forEach(e => {
     e.addEventListener("click", async item => {
-        songs = await getSongs(`././songs/${item.currentTarget.getElementsByTagName("img").item(0).src.split("/")[8]}`)
+        songs = await getSongs(`./songs/${item.currentTarget.getElementsByTagName("img").item(0).src.split("/")[8]}`)
         playMusic(songs[0])
 
     })
@@ -117,7 +117,7 @@ Array.from(document.getElementsByClassName("card")).forEach(e => {
 
 }
 async function main(){
-      await getSongs("././songs/ncs")
+      await getSongs("./songs/ncs")
       playMusic(songs[0], true)
 
       await displayAlbums()
@@ -125,11 +125,11 @@ async function main(){
        play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play()
-            play.src = "././img/pause.svg"
+            play.src = "./img/pause.svg"
         }
         else {
             currentSong.pause()
-            play.src = "././img/play.svg"
+            play.src = "./img/play.svg"
         }
       })
 
